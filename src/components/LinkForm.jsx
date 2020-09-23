@@ -13,14 +13,10 @@ import {
 import Axios from "axios";
 
 const SignupSchema = Yup.object().shape({
-	url: Yup.string()
-		.min(10, "Too Short!")
-		.max(50, "Too Long!")
-		.required("Required")
-		.url("Is not a URL!")
+	url: Yup.string().min(10, "Too Short!").required("Required").url("Is not a URL!")
 });
 
-const BASE_URL = "http://192.168.0.4:4000";
+const BASE_URL = process.env.REACT_APP_API;
 
 const LinkForm = ({ links, setLinks }) => {
 	const { colorMode } = useColorMode();
@@ -56,8 +52,9 @@ const LinkForm = ({ links, setLinks }) => {
 							p=".5rem"
 							backgroundColor="blue.700"
 							rounded="lg"
+							justify="space-between"
 						>
-							<Box width={[ "100%", "100%", "80%" ]}>
+							<Box width={[ "100%", "100%", "78%" ]}>
 								<Field name="url">
 									{({ field, form }) => (
 										<FormControl
@@ -82,7 +79,7 @@ const LinkForm = ({ links, setLinks }) => {
 									type="submit"
 									size="lg"
 									variantColor="blue"
-									width={[ "100%", "100%", "90%" ]}
+									width={[ "100%", "100%", "100%" ]}
 									mt={[ ".5rem", ".5rem", "0" ]}
 								>
 									Shorten
